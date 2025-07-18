@@ -1,0 +1,421 @@
+Time availabe before the full charge of the car':3
+
+Name: Ropeless
+Description: Whatever weather, indoor climbing enables you to improve your climbing skills all year! All information about  • difficulty levels and • opening hours and  • how to arrive.
+Contact Information:
+  Url: http://www.ropeless.it/
+  Language: en
+Distance in km from the EV station: 1.27
+
+Name: The Salewa Cube indoor climbing gym
+Description: Whatever weather, indoor climbing enables you to improve your climbing skills all year! All information about  • difficulty levels and • opening hours and  • how to arrive.
+Contact Information:
+  Url: http://www.salewa-cube.com/en/
+  City: Bolzano/Bozen
+  Email: info@salewa-cube.com
+  Address: Waltraud-Gebert-Deeg-Str. 
+  ZipCode: 39100
+  Language: en
+  CompanyName: Salewa Cube
+  CountryCode: IT
+  CountryName: Italy
+  Phonenumber: +39 0471 188 6867
+Distance in km from the EV station: 1.54
+
+Name: Outdoor swimming pool
+Description: Relaxation and fun in the water → Discover the great swimming pools in south tyrol! All information about • opening times • season start & end and • how to arrive.
+Contact Information:
+  Url: http://www.gemeinde.bozen.it
+  Language: en
+Distance in km from the EV station: 1.76
+
+Name: Wine & bike: The Wine Road
+Description: Explore South Tyrol by bicycle! → Enjoy • untouched nature • the amazing alpine landscape and • countless cycling tours on the mountain or in the valley!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 1.97
+
+Name: From San Giacomo/St. Jakob to Flavon Castle
+Description: Enjoy the alpine landscape of South Tyrol while hiking. Get online hiking tips and all information about • weather • trail descriptions • GPS track and • how to arrive.
+Contact Information:
+  Url: http://www.leifers-info.it
+  Language: en
+Distance in km from the EV station: 2.24
+
+Name: From Bolzano to Merano
+Description: Explore South Tyrol by bicycle! → Enjoy • untouched nature • the amazing alpine landscape and • countless cycling tours on the mountain or in the valley!
+Contact Information:
+  Url: https://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 25.78
+
+Name: Night-Run: 3,0 km
+Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 2.64
+
+Name: Oswald Run: 7,3 km
+Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 2.66
+
+Name: Castel Flavon/Haselburg Run: 10,9 km
+Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 2.64
+
+Name: Bridges tour: 6,3 km
+Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 2.64
+
+Name: Flavon/Haselburg Castle
+Description: Castles & palaces tell stories from long ago. Flavon/Haselburg Castle → Here you can find all historical information and details on how to arrive!
+Contact Information:
+  Url: http://www.haselburg.it
+  Language: en
+Distance in km from the EV station: 0.96
+
+Name: Semirurali Residential Complex
+Description: None
+Contact Information:
+  City: Bolzano, Bozen
+  Address: Via Bari
+  ZipCode: 39100
+  Language: en
+  CompanyName: IPEA
+  CountryCode: IT
+  CountryName: Italien
+Distance in km from the EV station: 0.99
+
+Name: Archimod
+Description: All information about • current exhibitions • opening times • contact and • pricing! Archimod is looking forward to your visit.
+Contact Information:
+  Url: http://www.provincia.bz.it/arte-cultura/archimod/
+  City: Bozen (Bolzano)
+  Email: ripartizione.edilizia@provincia.bz.it
+  Address: via GiottoStraße, 13
+  ZipCode: 39100
+  Language: en
+  Faxnumber: 
+  CompanyName: Archimod
+  CountryCode: IT
+  CountryName: Italy
+  Phonenumber: +39 0471 412330
+Distance in km from the EV station: 0.99
+
+Name: Ciné Museum
+Description: None
+Contact Information:
+  Url: https://www.cinemuseum.eu
+  Language: en
+Distance in km from the EV station: 1.06
+
+Name: Semi-rural House
+Description: All information about • current exhibitions • opening times • contact and • pricing! Semir-rural House is looking forward to your visit.
+Contact Information:
+  Url: http://www.comune.bolzano.it/casasemirurale
+  City: Bozen (Bolzano)
+  Email: 7.0.0@comune.bolzano.it
+  Address: Bari street 11
+  ZipCode: 39100
+  Language: en
+  Faxnumber: 
+  CompanyName: Semi-rural House
+  CountryCode: IT
+  CountryName: Italy
+  Phonenumber: +39 0471 997581
+Distance in km from the EV station: 1.07
+
+Name: Playground Lungo Isarco Eisackufer
+Description: None
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 1.1
+
+Name: Passage of the Memory
+Description: None
+Contact Information:
+  Url: http://www.comune.bolzano.it/lager
+  City: Bozen (Bolzano)
+  Email: 7.0.0@comune.bolzano.it
+  Address: Reschenstraße 80
+  ZipCode: 39100
+  Language: en
+  Faxnumber: 
+  CompanyName: Passage of the Memory
+  CountryCode: IT
+  CountryName: Italy
+  Phonenumber: +39 0471 997581
+Distance in km from the EV station: 1.35
+
+Name: Residential Block EA7 Casanova
+Description: None
+Contact Information:
+  City: Bolzano, Bozen
+  Address: Nicolo Rasmo Strasse 79
+  ZipCode: 39100
+  Language: en
+  CompanyName: Arche im KVW, Cooperative edilizie Sigmundskron e Castello
+  CountryCode: IT
+  CountryName: Italien
+Distance in km from the EV station: 1.45
+
+Name: Teatro Cristallo/Cristallo Theater
+Description: None
+Contact Information:
+  Url: http://www.teatrocristallo.it/it/
+  Language: en
+Distance in km from the EV station: 1.54
+
+Name: Alumix
+Description: •  Contact •  reservation •  opening times →  Alumix. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: 
+  Language: en
+  CompanyName: Alumix
+Distance in km from the EV station: 0.08
+
+Name: Restaurant Pizzeria Doppiozero
+Description: •  Contact •  reservation •  opening times →  Restaurant Pizzeria Doppiozero. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: https://www.facebook.com/doppiozerobolzano/
+  Language: en
+  CompanyName: Restaurant Pizzeria Doppiozero
+Distance in km from the EV station: 0.45
+
+Name: Forst Season
+Description: •  Contact •  reservation •  opening times →  Forst Season. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.forstseason.it
+  Language: en
+  CompanyName: Forst Season
+Distance in km from the EV station: 0.85
+
+Name: Castel Flavon - Haselburg
+Description: •  Contact •  reservation •  opening times →  Castel Flavon - Haselburg. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.castelflavon.it
+  Language: en
+  CompanyName: Castel Flavon - Haselburg
+Distance in km from the EV station: 0.89
+
+Name: Hotel Restaurant Magdalener Hof
+Description: •  Contact •  reservation •  opening times →  Hotel Restaurant Magdalener Hof. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.magdalenerhof.it
+  Language: en
+  CompanyName: Hotel Restaurant Magdalener Hof
+Distance in km from the EV station: 0.92
+
+Name: Four Points By Sheraton - Restaurant Patio
+Description: •  Contact •  reservation •  opening times →  Four Points By Sheraton - Restaurant Patio. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.fourpointsbolzano.it
+  Language: en
+  CompanyName: Four Points By Sheraton - Restaurant Patio
+Distance in km from the EV station: 0.96
+
+Name: Hotel Restaurant Fiera
+Description: •  Contact •  reservation •  opening times →  Hotel Restaurant Fiera. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.hotelfierabz.com
+  Language: en
+  CompanyName: Hotel Restaurant Fiera
+Distance in km from the EV station: 0.99
+
+Name: Restaurant Pizzeria Da Libero
+Description: •  Contact •  reservation •  opening times →  Restaurant Pizzeria Da Libero. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: https://ristorantepizzeriadalibero.com/
+  Language: en
+  CompanyName: Restaurant Pizzeria Da Libero
+Distance in km from the EV station: 1.01
+
+Name: Cibus
+Description: •  Contact •  reservation •  opening times →  Cibus. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: https://www.cibus.bz/
+  Language: en
+  CompanyName: Cibus
+Distance in km from the EV station: 1.05
+
+Name: Restaurant Lewald
+Description: •  Contact •  reservation •  opening times →  Restaurant Lewald. Find the perfect restaurant, cafe, alpine chalet in South Tyrol.
+Contact Information:
+  Url: http://www.lewald.it
+  Language: en
+  CompanyName: Restaurant Lewald
+Distance in km from the EV station: 1.38
+
+Name: Leitner Energy:IT*LEE*E2200047:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200044:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200049:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200045:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200046:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200048:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: IT*NEO*E12020015930004*3
+Description: None
+Contact Information:
+  City: BOLZANO - BOZEN
+  Address: Via Alessandro Volta Strasse 17
+  Language: en
+Distance in km from the EV station: 0.12
+
+Name: IT*NEO*E12020015930004*2
+Description: None
+Contact Information:
+  City: BOLZANO - BOZEN
+  Address: Via Alessandro Volta Strasse 17
+  Language: en
+Distance in km from the EV station: 0.12
+
+Name: IT*NEO*E12020015930004*1
+Description: None
+Contact Information:
+  City: BOLZANO - BOZEN
+  Address: Via Alessandro Volta Strasse 17
+  Language: en
+Distance in km from the EV station: 0.12
+
+Name: Leitner Energy:CSU Soc. Coop. - Tiefgarage 4 - 11kW - Bozen/Bolzano - A. Volta Str. 13/Via A. Volta 13:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.14
+
+Name: NOI Techpark
+Description: None
+Contact Information:
+  Url: https://www.noi.bz.it
+  Language: en
+Distance in km from the EV station: 0.01
+
+Name: smartboxx ®
+Description: None
+Contact Information:
+  Url: https://www.smartboxx.it
+  Language: en
+Distance in km from the EV station: 0.1
+
+Name: Tiozzo, specialised paperhanger and decorator
+Description: None
+Contact Information:
+  Url: https://www.tiozzorm.it/
+  Language: en
+Distance in km from the EV station: 0.24
+
+Name: B&B Hotel Bolzano
+Description: None
+Contact Information:
+  Url: https://www.hotel-bb.com/it/hotel/bolzano
+  Language: en
+Distance in km from the EV station: 0.61
+
+Name: Stahlbau Pichler
+Description: None
+Contact Information:
+  Url: http://www.stahlbaupichler.com
+  Language: en
+Distance in km from the EV station: 0.61
+
+Name: Imprexa
+Description: None
+Contact Information:
+  Url: https://www.imprexa.com/
+  Language: en
+Distance in km from the EV station: 0.66
+
+Name: Thuniversum
+Description: None
+Contact Information:
+  Url: https://www.thuniversum.it
+  Language: en
+Distance in km from the EV station: 0.75
+
+Name: Startbase Fieramesse
+Description: None
+Contact Information:
+  Url: https://startbase.it/it/coworking-bolzano/
+  Language: en
+Distance in km from the EV station: 0.81
+
+Name: Hubz.space
+Description: None
+Contact Information:
+  Url: https://http://www.hubz.space/
+  Language: en
+Distance in km from the EV station: 0.91
+
+Name: Four Points by Sheraton Bar
+Description: None
+Contact Information:
+  Url: https://https://www.marriott.com/en-us/hotels/bzofp-four-points-bolzano/dining/
+  Language: en
+Distance in km from the EV station: 0.93
+
+Name: La mostra sarà visitabile fino al 5 agosto eccetto sabato e domenica
+Description: None
+Contact Information:
+  City: Bozen/Bolzano
+  Address: Cappuccini street, 28, 39100 Bolzano BZ 
+  ZipCode: 39100
+  Language: en
+  CompanyName: Lab 1 - EN
+  CountryCode: IT
+Distance in km from the EV station: 2.44
+
+Name: wheather forecast
+Description: weather forecast of the next 3 hours
+Contact Information:
+  Date: 2025-07-18T19:00:00+00:00
+  Temperature: 28.7
+  PrecipitationProbability: 1
+  Precipitation: 0.0
+  WeatherCode: b
+  WeatherDesc: partly cloudy
+  WeatherDescription: None
+  WeatherImgUrl: https://daten.buergernetz.bz.it/services/weather/graphics/icons/imgsource/wetter/icon_2.png
+  WindDirection: 235
+  WindSpeed: 1
+
