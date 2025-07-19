@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /Users/giusber2005/Desktop/workspace/repositories/projects/wavelab_challenge/ChargeEnv
+set -gx VIRTUAL_ENV /Users/giusber2005/Desktop/workspace/repositories/projects/chargeBot/ChargeEnv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

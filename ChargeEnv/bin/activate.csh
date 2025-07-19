@@ -9,7 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV /Users/giusber2005/Desktop/workspace/repositories/projects/wavelab_challenge/ChargeEnv
+setenv VIRTUAL_ENV /Users/giusber2005/Desktop/workspace/repositories/projects/chargeBot/ChargeEnv
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"

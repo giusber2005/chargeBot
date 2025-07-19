@@ -1,4 +1,4 @@
-#!/Users/giusber2005/Desktop/workspace/repositories/projects/wavelab_challenge/ChargeEnv/bin/python3.12
+#!/Users/giusber2005/Desktop/workspace/repositories/projects/chargeBot/ChargeEnv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

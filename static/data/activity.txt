@@ -50,6 +50,13 @@ Contact Information:
   Language: en
 Distance in km from the EV station: 25.78
 
+Name: Castel Flavon/Haselburg Run: 10,9 km
+Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
+Contact Information:
+  Url: http://www.bolzano-bozen.it
+  Language: en
+Distance in km from the EV station: 2.64
+
 Name: Night-Run: 3,0 km
 Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
 Contact Information:
@@ -63,13 +70,6 @@ Contact Information:
   Url: http://www.bolzano-bozen.it
   Language: en
 Distance in km from the EV station: 2.66
-
-Name: Castel Flavon/Haselburg Run: 10,9 km
-Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
-Contact Information:
-  Url: http://www.bolzano-bozen.it
-  Language: en
-Distance in km from the EV station: 2.64
 
 Name: Bridges tour: 6,3 km
 Description: Keep yourself fit and healthy and enjoy the great landscape and pure nature of South Tyrol! → Find all information about • duration • length and • altitude difference!
@@ -258,13 +258,7 @@ Contact Information:
   CompanyName: Restaurant Lewald
 Distance in km from the EV station: 1.38
 
-Name: Leitner Energy:IT*LEE*E2200047:1
-Description: None
-Contact Information:
-  Language: en
-Distance in km from the EV station: 0.02
-
-Name: Leitner Energy:IT*LEE*E2200044:1
+Name: Leitner Energy:IT*LEE*E2200048:1
 Description: None
 Contact Information:
   Language: en
@@ -282,25 +276,23 @@ Contact Information:
   Language: en
 Distance in km from the EV station: 0.02
 
+Name: Leitner Energy:IT*LEE*E2200047:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
+Name: Leitner Energy:IT*LEE*E2200044:1
+Description: None
+Contact Information:
+  Language: en
+Distance in km from the EV station: 0.02
+
 Name: Leitner Energy:IT*LEE*E2200046:1
 Description: None
 Contact Information:
   Language: en
 Distance in km from the EV station: 0.02
-
-Name: Leitner Energy:IT*LEE*E2200048:1
-Description: None
-Contact Information:
-  Language: en
-Distance in km from the EV station: 0.02
-
-Name: IT*NEO*E12020015930004*3
-Description: None
-Contact Information:
-  City: BOLZANO - BOZEN
-  Address: Via Alessandro Volta Strasse 17
-  Language: en
-Distance in km from the EV station: 0.12
 
 Name: IT*NEO*E12020015930004*2
 Description: None
@@ -318,7 +310,15 @@ Contact Information:
   Language: en
 Distance in km from the EV station: 0.12
 
-Name: Leitner Energy:CSU Soc. Coop. - Tiefgarage 4 - 11kW - Bozen/Bolzano - A. Volta Str. 13/Via A. Volta 13:1
+Name: IT*NEO*E12020015930004*3
+Description: None
+Contact Information:
+  City: BOLZANO - BOZEN
+  Address: Via Alessandro Volta Strasse 17
+  Language: en
+Distance in km from the EV station: 0.12
+
+Name: Leitner Energy:CSU Soc. Coop. - Tiefgarage 3 - 11kW - Bozen/Bolzano - A. Volta Str. 13/Via A. Volta 13:1
 Description: None
 Contact Information:
   Language: en
@@ -394,28 +394,17 @@ Contact Information:
   Language: en
 Distance in km from the EV station: 0.93
 
-Name: La mostra sarà visitabile fino al 5 agosto eccetto sabato e domenica
-Description: None
-Contact Information:
-  City: Bozen/Bolzano
-  Address: Cappuccini street, 28, 39100 Bolzano BZ 
-  ZipCode: 39100
-  Language: en
-  CompanyName: Lab 1 - EN
-  CountryCode: IT
-Distance in km from the EV station: 2.44
-
 Name: wheather forecast
 Description: weather forecast of the next 3 hours
 Contact Information:
-  Date: 2025-07-18T19:00:00+00:00
-  Temperature: 28.7
-  PrecipitationProbability: 1
-  Precipitation: 0.0
-  WeatherCode: b
-  WeatherDesc: partly cloudy
+  Date: 2025-07-19T19:00:00+00:00
+  Temperature: 25.6
+  PrecipitationProbability: 35
+  Precipitation: 0.6
+  WeatherCode: j
+  WeatherDesc: overcast with light rain
   WeatherDescription: None
-  WeatherImgUrl: https://daten.buergernetz.bz.it/services/weather/graphics/icons/imgsource/wetter/icon_2.png
-  WindDirection: 235
+  WeatherImgUrl: https://daten.buergernetz.bz.it/services/weather/graphics/icons/imgsource/wetter/icon_10.png
+  WindDirection: 350
   WindSpeed: 1
 

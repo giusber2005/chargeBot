@@ -86,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('delButton').style.display = 'none';
             document.getElementById('audioPlayer').style.display = 'none';
 
-            let filename = '';
-
             // Prepare the form data
             //this refers to the form being submitted, which will be sent in the AJAX request
             const formData = new FormData(this);

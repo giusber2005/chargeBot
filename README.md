@@ -3,7 +3,7 @@
 
 NOI HACKATHON wavelab_challenge
 
-![Alt text](charge_bot/static/images/charge_bot.png)
+![Alt text](static/images/HappyFaceBlack.jpg)
 
 ## Intro
 
@@ -37,30 +37,7 @@ Once the application is up and running, you can access the chat and start your q
 - The data is updated at the first prompt retrieving the daily atraction and the weather forecast for the next three hours.
 - Explore the different options by continuously chatting with the boot and specifying all your needs.
 
-## Architecture
-
-```mermaid
-flowchart LR
-    odh("OpenDataHub API"):::compext
-    openai("OpenAI API"):::compext
-    ui("browser showing\nthe HTML"):::compext
-    subgraph app [Docker Compose application]
-        flask("Flask"):::comp
-        sqlite3("SQlite3"):::comp
-        frontend("Flask frontend server"):::comp
-    end
-    odh --> flask
-    openai --> flask
-    flask --> frontend
-    frontend --> ui
-    flask -.- sqlite3
-    classDef scope fill:#fff,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5,color:#444,font-size:10pt;
-    classDef comp fill:#fafafa,stroke:#333,stroke-width:1.5px,font-size:10pt;
-    classDef compsub fill:#eee,stroke:#333,stroke-width:1.5px,font-size:10pt;
-    classDef compext fill:#fff,stroke:#333,stroke-width:1.5px,font-size:10pt;
-    classDef none fill:#fff,stroke:#fff,stroke-width:0px,font-size:0pt;
-    class app scope
-```
+![Alt text](charge_bot/static/images/Architecture.jpg)
 
 The figure shows the application architecture in terms of components and data flow (solid links):
 
