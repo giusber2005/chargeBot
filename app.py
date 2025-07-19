@@ -9,9 +9,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 from werkzeug.utils import secure_filename
 
-
+app = Flask(__name__)
+    
 def create_app():
-    app = Flask(__name__)
 
     # Define the upload folder in the configuration
     app.config['AUDIO_FOLDER'] = 'static/data/audio_files'
@@ -188,3 +188,6 @@ def create_app():
         return redirect("/")
 
     return app
+
+if __name__ == '__main__':
+    app.run()

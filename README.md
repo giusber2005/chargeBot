@@ -37,7 +37,7 @@ Once the application is up and running, you can access the chat and start your q
 - The data is updated at the first prompt retrieving the daily atraction and the weather forecast for the next three hours.
 - Explore the different options by continuously chatting with the boot and specifying all your needs.
 
-![Alt text](charge_bot/static/images/Architecture.jpg)
+![Alt text](static/images/Architecture.jpg)
 
 The figure shows the application architecture in terms of components and data flow (solid links):
 

@@ -1,4 +1,5 @@
-.venv/
+ChargeEnv/
 .env
 __pychace__/
+flask_session/
 problems.txt
