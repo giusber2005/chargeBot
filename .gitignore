@@ -1,5 +1,35 @@
+# Virtual environments
 ChargeEnv/
-.env
-__pychace__/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Flask
 flask_session/
+instance/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Personal files
 problems.txt
+notes.txt
+
+# Logs
+*.log
+logs/

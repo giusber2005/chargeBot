@@ -94,6 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const messageInput = formData.get("messageInput");
                 addMessage(messageInput);
 
+                // Clear the message input box
+                const messageInputField = document.querySelector('input[name="messageInput"]');
+                if (messageInputField) {
+                    messageInputField.value = '';
+                }
+                
                 //insert the loading wheel inside this innerHTML
                 container = document.querySelector('.messageContainer');
                 containerContent = document.querySelector('.messageContainer').innerHTML;

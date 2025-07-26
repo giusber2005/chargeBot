@@ -11,6 +11,7 @@ body {
     background-color: rgb(78, 197, 162); /* Background color */
     position: relative;
 }
+
 .search-container {
     text-align: center;
     background: #fff;
@@ -289,3 +290,53 @@ body {
       transform: translateY(0);
     }
   }
+
+
+/*Animation for the mascotte of the project*/
+
+.animated-img {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Pulsing effect */
+.animated-img:hover {
+    transform: scale(1.1);
+    animation: pulse 1s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1.1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1.1); }
+}
+
+/* Combined pulsing and twisting */
+.pulse-twist:hover {
+    animation: pulseAndTwist 0.8s;
+}
+
+@keyframes pulseAndTwist {
+    0% { transform: scale(1.1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.2) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1.1) rotate(0deg); }
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between h2 and image */
+}
+
+.title-container h2 {
+    margin: 0; /* Remove default margin */
+    line-height: 1; /* Control line height */
+}
+
+.mascotte-img {
+    height: 4em; /* Same height as text */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+}

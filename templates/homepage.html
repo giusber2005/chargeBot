@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block body %}
+    <div id="mascotte-container" style="margin-bottom: 20px;">
+        <img src="../static/images/HappyFace-Transparent.png" alt="image couldn't be loaded :/" id="mascotte" style="width: 200px; height: auto" class="animated-img pulse-twist">
+    </div>
+
     <div class="search-container">
         <h1>Hi, i'm here to help you!</h1>
         <form enctype="multipart/form-data" action="/start_chat_page" class="startChatForm" method="post">

@@ -42,6 +42,11 @@ def create_app():
         openData()
     
     # Define your routes
+        
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory('static/images/', 'favicon.ico', max_age=0)  # No caching
+            
     @app.route("/check-database", methods=["GET"])
     def check_database():
         try:
