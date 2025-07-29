@@ -2,14 +2,27 @@ from flask import Flask, flash, redirect, render_template, request, session, sen
 from flask_session import Session
 import sqlite3
 from datetime import timedelta
-from functions import chargeBot, openData, clear_old_chat_records
+from functions import chargeBot, openData, clear_old_chat_records, reassign_assistant
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
 import os
+from dotenv import load_dotenv
+from openai import OpenAI
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+load_dotenv()
+    
+# Getting chatGPT api_key for interacting with the api
+api_key = os.getenv('CHATGPT_API_KEY')
+# Initialize OpenAI client with API key
+client = OpenAI(api_key=api_key)
+#Initializing the thread
+thread = client.beta.threads.create()
+#Create new assistant
+assistant = reassign_assistant(client, None)
     
 def create_app():
 
@@ -32,7 +45,7 @@ def create_app():
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
     
     # Set secret key for session management
-    app.secret_key = "woqnEp-hygtev-0gyxsi"
+    app.secret_key = os.getenv('SECRET_KEY')
     
     # Initialize session
     Session(app)
@@ -42,7 +55,7 @@ def create_app():
         openData()
     
     # Define your routes
-        
+    
     @app.route('/favicon.ico')
     def favicon():
         return send_from_directory('static/images/', 'favicon.ico', max_age=0)  # No caching
@@ -54,7 +67,10 @@ def create_app():
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM chat")
             rows = cursor.fetchall()
-
+            
+            conn.commit()
+            conn.close()
+            
             result = [{'id': row[0], 'user': row[1], 'machine': row[2]} for row in rows]
             return jsonify(result)
         
@@ -69,6 +85,17 @@ def create_app():
             
     @app.route("/")
     def index():
+        global thread
+        global client
+        global assistant
+        try:
+            response = client.beta.threads.delete(thread_id=thread.id)
+            print(f"Thread {thread.id} deleted successfully")
+        except Exception as e:
+            print(f"Error deleting thread: {e}")
+        thread = client.beta.threads.create()
+        assistant = reassign_assistant(client, assistant)
+        
         #delete all from the database
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
@@ -108,7 +135,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question)
+                output = chargeBot(question, client, thread, assistant)
                 question = filename
             else:
                 question = request.form.get("question")
@@ -116,24 +143,26 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question)
-
+                output = chargeBot(question, client, thread, assistant)
+                
             try:
-                with sqlite3.connect('database.db') as conn:
-                    cursor = conn.cursor()
-                    
-                    # Insert into chat table
-                    cursor.execute("INSERT INTO chat (user, machine) VALUES (?, ?)", (question, output))
-                    chat_id = cursor.lastrowid
+                conn = sqlite3.connect('database.db')
 
-                    # Insert into time table with chat_id
-                    cursor.execute("INSERT INTO time (chat_id) VALUES (?)", (chat_id,))
-                    
-                    conn.commit()
+                cursor = conn.cursor()
+                
+                # Insert into chat table
+                cursor.execute("INSERT INTO chat (user, machine) VALUES (?, ?)", (question, output))
+                chat_id = cursor.lastrowid
+
+                # Insert into time table with chat_id
+                cursor.execute("INSERT INTO time (chat_id) VALUES (?)", (chat_id,))
             
             except sqlite3.Error as e:
+                conn.close()
                 return jsonify({'error': f'An error occurred: {e}'}), 500
 
+            conn.commit()
+            conn.close()
             # Return JSON response with redirection URL
             return jsonify({'redirect': '/start_chat_page', 'message': 'Chat recorded successfully!'})
 
@@ -157,7 +186,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question)
+                output = chargeBot(question, client, thread, assistant)
                 question = filename
             else:
                 question = request.form.get("messageInput")
@@ -165,24 +194,25 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question)
+                output = chargeBot(question, client, thread, assistant)
             
             try:
-                with sqlite3.connect('database.db') as conn:
-                    cursor = conn.cursor()
-                    
-                    # Insert into chat table
-                    cursor.execute("INSERT INTO chat (user, machine) VALUES (?, ?)", (question, output))
-                    chat_id = cursor.lastrowid
+                conn = sqlite3.connect('database.db')
+                cursor = conn.cursor()
+                
+                # Insert into chat table
+                cursor.execute("INSERT INTO chat (user, machine) VALUES (?, ?)", (question, output))
+                chat_id = cursor.lastrowid
 
-                    # Insert into time table with chat_id
-                    cursor.execute("INSERT INTO time (chat_id) VALUES (?)", (chat_id,))
-                    
-                    conn.commit()
-            
+                # Insert into time table with chat_id
+                cursor.execute("INSERT INTO time (chat_id) VALUES (?)", (chat_id,))
+                
             except sqlite3.Error as e:
+                conn.close()
                 return jsonify({'error': f'An error occurred: {e}'}), 500
 
+            conn.commit()
+            conn.close()
             # Return JSON response with redirection URL
             return jsonify({'message': output})
         
@@ -200,3 +230,5 @@ if __name__ == '__main__':
 else:
     # For production (Gunicorn)
     app = create_app()
+    
+    
