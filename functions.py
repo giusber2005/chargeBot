@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-#libraries to convert the markdown to plain text
+# Libraries to convert the markdown to plain text
 import markdown
 
 import requests
@@ -21,6 +21,7 @@ def reassign_assistant(client, assistant):
             print(f"Deleted previous assistant: {assistant.id}")
         except Exception as e:
             print(f"Error deleting assistant: {e}")
+            return None
     
     # Create new assistant
     assistant = client.beta.assistants.create(
@@ -33,11 +34,26 @@ def reassign_assistant(client, assistant):
     print(f"New assistant created: {assistant.id}")
     return assistant
 
-def chargeBot(input, client, thread, assistant):
-
-    # Create a vector store called "VS"
-    vector_store = client.beta.vector_stores.create(name="VS")
+def reassign_vector_store(client, vector_store):
+    if vector_store != None:
+        try:
+            response = client.beta.vector_stores.delete(vector_store.id)
+            
+            if response.deleted:
+                print(f"✅ Vector store {vector_store.id} deleted successfully, creating a new one....")
+            else:
+                print(f"❌ Failed to delete vector store {vector_store.id}")
+                return None
+                
+        except Exception as e:
+            print(f"Error deleting vector store: {e}")
+            return None
     
+    vector_store = client.beta.vector_stores.create(name="VS")
+    return vector_store
+
+def chargeBot(input, client, thread, assistant, vector_store):
+
     #---------------------------------------File upload---------------------------------------------
 
     # Ready the files for upload to OpenAI
@@ -203,7 +219,7 @@ def openData():
     location = [46.47858328296116,11.332559910750518]
 
     # get time remaing for full charge
-    time_available = random.uniform(0.4, 4.4)
+    time_available = round(random.uniform(0.4, 4.4), 2)
 
     # seach new data
     good_quality_data = {'Time':time_available}

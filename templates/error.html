@@ -1,0 +1,23 @@
+{% extends "root.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <div id="mascotte-container" style="margin-bottom: 20px; margin-top: 20px">
+        <img src="../static/images/SadFace-Transparent.png" alt="image couldn't be loaded :/" id="mascotte" style="width: 200px; height: auto" class="animated-img pulse-twist">
+    </div>
+
+    <div class="search-container">
+        <h2>Oh no! An error occurred.</h2>
+        <p>{{message}}</p>
+    </div>
+
+
+
+    <div class="footer-container">
+        <img src="static/images/WL-new-69w.png" alt="Logo">
+        <p style="margin-top: 1rem">Powered by ChargeBot</p>
+    </div>
+{% endblock%}

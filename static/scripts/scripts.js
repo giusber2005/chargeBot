@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container = document.querySelector('.messageContainer');
                 containerContent = document.querySelector('.messageContainer').innerHTML;
                 console.log(containerContent);
-                container.innerHTML = `<div class="spinner-grow" id="loadingWheel" role="status" style="margin: 20px">
+                container.innerHTML = `<div class="spinner-grow" id="loadingWheel" role="status" style="margin-top: 15px">
                                             <span class="sr-only">Loading...</span>
                                         </div>`;
 
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </div>`;
             } else {
                 const file = formData.get("audioStorage");
-                if (file) {    
+                if (file) {
                     addAudioMessage(file.name);
                     //insert the loading wheel inside this innerHTML
                     document.getElementById('loadingWheel').style.display = 'block';

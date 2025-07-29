@@ -2,11 +2,12 @@ from flask import Flask, flash, redirect, render_template, request, session, sen
 from flask_session import Session
 import sqlite3
 from datetime import timedelta
-from functions import chargeBot, openData, clear_old_chat_records, reassign_assistant
+from functions import chargeBot, openData, clear_old_chat_records, reassign_assistant, reassign_vector_store
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
 import os
+import sys
 from dotenv import load_dotenv
 from openai import OpenAI
 from werkzeug.utils import secure_filename
@@ -23,7 +24,12 @@ client = OpenAI(api_key=api_key)
 thread = client.beta.threads.create()
 #Create new assistant
 assistant = reassign_assistant(client, None)
-    
+# Create a vector store called "VS"
+vector_store = reassign_vector_store(client, None)
+if vector_store == None or assistant == None:
+        print("Couldn't start the web application for a problem in the initialization of the bot!")
+        sys.exit(1)
+
 def create_app():
 
     # Define the upload folder in the configuration
@@ -88,15 +94,28 @@ def create_app():
         global thread
         global client
         global assistant
+        global vector_store
         try:
-            response = client.beta.threads.delete(thread_id=thread.id)
+            client.beta.threads.delete(thread_id=thread.id)
             print(f"Thread {thread.id} deleted successfully")
         except Exception as e:
-            print(f"Error deleting thread: {e}")
-        thread = client.beta.threads.create()
-        assistant = reassign_assistant(client, assistant)
+            message = "Error deleting thread"
+            print(f"{message}: {e}")
+            return render_template("error.html", message=message)
         
-        #delete all from the database
+        # Create new thread
+        thread = client.beta.threads.create()
+        # Assign new assistant
+        assistant = reassign_assistant(client, assistant)
+        # Assign new vector_store
+        vector_store = reassign_vector_store(client, vector_store)
+        
+        if assistant == None or vector_store == None:
+            message = "Error reassigning either the assistant or the thread"
+            print(message)
+            return render_template("error.html", message=message)
+        
+        # Delete all from the database
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         
@@ -135,7 +154,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question, client, thread, assistant)
+                output = chargeBot(question, client, thread, assistant, vector_store)
                 question = filename
             else:
                 question = request.form.get("question")
@@ -143,7 +162,7 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question, client, thread, assistant)
+                output = chargeBot(question, client, thread, assistant, vector_store)
                 
             try:
                 conn = sqlite3.connect('database.db')
@@ -186,7 +205,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question, client, thread, assistant)
+                output = chargeBot(question, client, thread, assistant, vector_store)
                 question = filename
             else:
                 question = request.form.get("messageInput")
@@ -194,7 +213,7 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question, client, thread, assistant)
+                output = chargeBot(question, client, thread, assistant, vector_store)
             
             try:
                 conn = sqlite3.connect('database.db')
