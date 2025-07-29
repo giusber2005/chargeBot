@@ -97,11 +97,13 @@ def chargeBot(input, client, thread, assistant):
         status = run.status
 
     messages = client.beta.threads.messages.list(
-        thread_id=thread.id
+        thread_id=thread.id,
+        order = "desc",
+        limit=10
     )
     print("\n")
     
-    for message in reversed(messages.data):
+    for message in messages.data:
         if message.role == "assistant":
             to_clean = message.content[0].text.value
             pattern = r'【[^】]*】'
