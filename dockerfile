@@ -1,22 +1,27 @@
-# syntax=docker/dockerfile:1.4
-FROM --platform=$BUILDPLATFORM python:3.10-alpine AS builder
+# Simple Dockerfile with Gunicorn
+FROM python:3.11-slim
 
-WORKDIR /charge_bot
+WORKDIR /app
 
-COPY requirements.txt /charge_bot
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install -U pip && \
-    pip install -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
 
-COPY . /charge_bot
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Make port 5000 available to the world outside this container
+# Copy application
+COPY . .
+
+# Create necessary directories (no database folder needed)
+RUN mkdir -p logs static/data
+
+# Set proper permissions
+RUN chmod 755 static/data
+
+# Expose port
 EXPOSE 5000
 
-# Define environment variable
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
-# Run the application
-CMD ["flask", "run"]
+# Run with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "app:app"]
 

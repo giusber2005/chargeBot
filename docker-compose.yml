@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  chargebot:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FLASK_ENV=${FLASK_ENV}
+    volumes:
+      # SQLite database
+      - ./database.db:/app/database.db
+      # Static data files
+      - ./static/data:/app/static/data
+    restart: unless-stopped
