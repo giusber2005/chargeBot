@@ -46,10 +46,10 @@ Some techical observations
 The figure shows the application architecture in terms of components and data flow (solid links):
 
 The application uses current data from the [Open Data Hub](<https://opendatahub.it>). Loads the :
--Weather forecast for the next 3 hours
--Activity based on the season
--Events happening during the day
--Distance between EV charging station and POI
+- Weather forecast for the next 3 hours
+- Activity based on the season
+- Events happening during the day
+- Distance between EV charging station and POI
 
 The information is collected and stored to create a dataset used to run RAG with the GPT-4o model.
 The props for the LLm are tailored so that the models are limited in the hallucination, and do not drive away from the conversation, but still mantain a polite approach to the conservation by giving short responses to off-topic questions.
