@@ -7,7 +7,7 @@ services:
       - "5000:5000"
     environment:
       - SECRET_KEY=${SECRET_KEY}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_KEY=${CHATGPT_API_KEY}
       - FLASK_ENV=${FLASK_ENV}
     volumes:
       # SQLite database
