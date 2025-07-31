@@ -26,6 +26,8 @@ instance/
 .DS_Store
 Thumbs.db
 
+# Study of the data
+
 # Personal files
 problems.txt
 notes.txt
