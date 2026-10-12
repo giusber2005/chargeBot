@@ -3,34 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1215">
 
-    <!-- CSS and JS for Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <!-- end of the Bootstrap area-->
-     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..800&display=swap" rel="stylesheet">
+
     <link href="/static/css/styles.css" rel="stylesheet">
     <script type="module" src="{{ url_for('static', filename='scripts/scripts.js') }}"></script>
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} · ChargeBot</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <div class="demo-toggle" {% if demo_forced %}title="No API key configured: the website can only run in demo mode"{% else %}title="Answer from the activity data without calling the AI"{% endif %}>
-        <label class="switch">
-            <input type="checkbox" id="demoToggle" {% if demo_forced %}checked disabled{% endif %}>
-            <span class="slider"></span>
-        </label>
-        <label for="demoToggle">Demo mode</label>
-    </div>
-    {% block body %}{% endblock %}
+    <header class="topbar">
+        <a href="/home" class="brand" title="Home: starts a new chat">
+            <img src="/static/images/HappyFace-Transparent.png" alt="" class="brand-logo">
+            <span>ChargeBot</span>
+        </a>
+
+        <div class="charge-chip" data-status="preparing" aria-live="polite">
+            <span class="status-dot"></span>
+            <span data-field="soc">--</span>
+            <span class="chip-sep">·</span>
+            <span data-field="remaining">--</span>
+        </div>
+
+        <div class="demo-toggle" {% if demo_forced %}title="No API key configured: the website can only run in demo mode"{% else %}title="Answer from the activity data without calling the AI"{% endif %}>
+            <label class="switch">
+                <input type="checkbox" id="demoToggle" {% if demo_forced %}checked disabled{% endif %}>
+                <span class="slider"></span>
+            </label>
+            <label for="demoToggle">Demo</label>
+        </div>
+    </header>
+
+    <main class="page">
+        {% block body %}{% endblock %}
+    </main>
 </body>
 </html>

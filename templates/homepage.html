@@ -1,48 +1,37 @@
 {% extends "root.html" %}
 
 {% block title %}
-    Homepage
+    Home
 {% endblock %}
 
 {% block body %}
-    <div id="mascotte-container" style="margin-bottom: 20px; margin-top: 20px">
-        <img src="../static/images/HappyFace-Transparent.png" alt="image couldn't be loaded :/" id="mascotte" style="width: 200px; height: auto" class="animated-img pulse-twist">
-    </div>
+    <section class="hero card">
+        <img src="/static/images/HappyFace-Transparent.png" alt="ChargeBot mascot" id="mascotte" class="hero-mascot animated-img pulse-twist">
+        <h1>Hi, I'm ChargeBot!</h1>
+        <p class="muted">Your car is charging. Tell me what you like and I'll find something nearby to fill the wait.</p>
 
-    <div class="search-container">
-        <h1>Hi, i'm here to help you!</h1>
-        <form enctype="multipart/form-data" action="/start_chat_page" class="startChatForm" method="post">
-            <input type="hidden" id="value" value="1">
-            <input type="text" id="question" name="question" class="search-bar" placeholder="Ask something..." required>
-            <div class='messageContainer'>
-                <input type="submit" id="submit_button" class="start-button" value="Start chat">
-            </div>
-        </form>
-        <button id="recordButton" class="start-button audioStarter" style="margin: 10px"> Start recording </button>
-    </div>
+        {% with route="/start_chat_page", field="question", placeholder="Ask something… e.g. a museum close by" %}
+            {% include "_composer.html" %}
+        {% endwith %}
 
-    <button id="stopButton" class="start-button" style="display: none; margin: 20px"> Stop recording </button>
+        <div class="suggestions">
+            <button type="button" class="chip" data-suggestion="What can I do nearby in the time I have left?">⏱ Fits my charging time</button>
+            <button type="button" class="chip" data-suggestion="Is there a good place to eat close to the station?">🍝 Food nearby</button>
+            <button type="button" class="chip" data-suggestion="Suggest an indoor activity for today">🏛 Indoor activity</button>
+        </div>
+    </section>
 
-    <div id="audioButtons">
-        <button id="againButton" class="start-button audioStarter" style="display:none; margin: 10px"> Record again </button>
+    <a href="/chat_page" class="card charge-summary" data-status="preparing">
+        <div class="summary-bar"><div class="summary-fill" id="summaryFill"></div><div class="summary-target"></div></div>
+        <div class="summary-row">
+            <span class="status-pill"><span class="status-dot"></span><span data-field="status">Connecting</span></span>
+            <span><strong data-field="soc">--</strong> · <span data-field="remaining">--</span></span>
+            <span><strong data-field="power">0.0</strong> kW</span>
+        </div>
+    </a>
 
-        <button id="delButton" class="start-button" style="display: none; margin: 10px"> Delete recording </button>
-
-        <form enctype="multipart/form-data" action="/start_chat_page" id="audioForm" class="startChatForm" method="post" style="display: none">
-            <input type="hidden" id="value" value="1">
-            <input type="file" id="audioStorage" name="audioStorage" accept="audio/*" style="display: none">
-            <input type="submit" id="submit_button" class="start-button" value="Send audio" style="margin: 10px">
-        </form>
-    </div>
-
-    <audio id="audioPlayer" controls style="margin: 10px"></audio>
-
-    <div class="spinner-grow" id="loadingWheel" role="status" style="display: none; margin: 20px">
-        <span class="sr-only">Loading...</span>
-    </div>
-
-    <div class="footer-container">
-        <img src="static/images/WL-new-69w.png" alt="Logo">
-        <p style="margin-top: 1rem">Powered by ChargeBot</p>
-    </div>
-{% endblock%}
+    <footer class="footer">
+        <img src="/static/images/WL-new-69w.png" alt="Logo">
+        <p>Powered by ChargeBot</p>
+    </footer>
+{% endblock %}

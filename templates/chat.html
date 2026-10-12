@@ -1,58 +1,32 @@
 {% extends "root.html" %}
 
 {% block title %}
-    Chat Page
+    Chat
 {% endblock %}
 
 {% block body %}
-    <strong> Go to the homepage to reset the chat records</strong>
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="title-container">
-                <h2>Chat with ChargeBot</h2>
-                <img src="../static/images/HappyFace-Transparent.png" 
-                    alt="image couldn't be loaded :/" 
-                    id="mascotte" 
-                    class="animated-img pulse-twist mascotte-img">
+    <div class="dashboard">
+        <section class="chat-panel card">
+            <div class="chat-header">
+                <img src="/static/images/HappyFace-Transparent.png" alt="" id="mascotte" class="mascotte-img animated-img pulse-twist">
+                <div>
+                    <h2>Chat with ChargeBot</h2>
+                    <p class="muted small">Going back home resets the chat</p>
+                </div>
+                <a href="/home" class="pill-button ghost">New chat</a>
             </div>
-            <a href="/home" class="back-button">Home</a>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <!-- Messages will be dynamically inserted here -->
-        </div>
-        <div class="chat-input">
-            <form enctype="multipart/form-data" action="/chat_page" method="post" class="startChatForm">
-                <input type="hidden" id="value" value="2">
-                <input type="text" id="messageInput" name="messageInput" class="search-bar" placeholder="Type a message..." required>
-                 <div class='messageContainer' style="display: inline-block">
-                    <button type="submit" id="sendButton">Send</button>
-                 </div>
-            </form>
-        </div>
 
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+
+            <div class="chat-footer">
+                {% with route="/chat_page", field="messageInput", placeholder="Type a message…" %}
+                    {% include "_composer.html" %}
+                {% endwith %}
+            </div>
+        </section>
+
+        {% include "_charging.html" %}
     </div>
-
-    <button id="recordButton" class="start-button audioStarter" style="margin: 10px"> Start recording </button>
-
-    <button id="stopButton" class="start-button" style="display: none; margin: 10px"> Stop recording </button>
-    
-    <div id="audioButtons">
-        <button id="againButton" class="start-button audioStarter" style="display:none; margin: 10px"> Record again </button>
-
-        <button id="delButton" class="start-button" style="display: none; margin: 10px"> Delete recording </button>
-
-        <form enctype="multipart/form-data" action="/start_chat_page" id="audioForm" class="startChatForm" method="post" style="display: none">
-            <input type="hidden" id="value" value="2">
-            <input type="file" id="audioStorage" name="audioStorage" accept="audio/*" style="display: none">
-            <input type="submit" id="submit_button" class="start-button" value="Send audio" style="margin: 10px">
-        </form>
-    </div>
-
-    <div class="spinner-grow" id="loadingWheel" role="status" style="display: none; margin: 20px">
-        <span class="sr-only">Loading...</span>
-    </div>
-    
-    <audio id="audioPlayer" controls style="margin: 10px"></audio>
 {% endblock %}
-
-

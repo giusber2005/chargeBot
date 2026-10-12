@@ -42,6 +42,12 @@ Once the application is up and running, you can access the chat and start your q
 The "Demo mode" slider in the top right corner makes ChargeBot answer straight from the Open Data Hub activity data, without calling the AI, so you can explore the basic features without spending API credits.
 If no `OPENAI_API_KEY` (or `CHATGPT_API_KEY`) is set, the website starts with demo mode always on.
 
+### Charging dashboard
+
+Next to the chat, ChargeBot shows the live charging session like the screen of a real charging station: state of charge with the 80% target, time to target and estimated finish time, charging power and its curve over time, energy delivered, cost, range added, voltage, current and battery temperature. The session can be stopped and restarted from the dashboard.
+The session is simulated in `charging.py` (a 77 kWh battery on a 150 kW CCS2 charger) and the bot receives the remaining charging time, so it can suggest activities that fit the wait.
+Two optional `.env` variables tune it: `CHARGING_PRICE_PER_KWH` (default `0.59`) and `CHARGING_TIME_SCALE` (default `1`, real time; e.g. `20` makes a demo session 20 times faster).
+
 Some techical observations
 - You will be presented with a flask web interface showing the chat, the platform is already designed to work on mobile too.
 - The data is updated at the first prompt retrieving the daily atraction and the weather forecast for the next three hours.

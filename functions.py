@@ -33,7 +33,7 @@ def create_vector_store(client):
     print(f"Vector store {vector_store.id}: {file_batch.status} {file_batch.file_counts}")
     return vector_store
 
-def chargeBot(input, client, vector_store, previous_response_id):
+def chargeBot(input, client, vector_store, previous_response_id, charging=""):
     
     #check if the input is text or is an audio file
     if not isinstance(input, str):
@@ -46,7 +46,7 @@ def chargeBot(input, client, vector_store, previous_response_id):
     # previous_response_id chains the conversation, replacing the old Assistants thread
     response = client.responses.create(
         model=MODEL,
-        instructions=INSTRUCTIONS,
+        instructions=f"{INSTRUCTIONS} Charging status: {charging}",
         input=input,
         previous_response_id=previous_response_id,
         tools=[{"type": "file_search", "vector_store_ids": [vector_store.id]}],
@@ -77,7 +77,7 @@ def load_activities(path="./static/data/activity.txt"):
             activities.append(fields)
     return activities, weather
 
-def demoBot(input):
+def demoBot(input, charging=""):
     # Answer without any AI API: pick activities from activity.txt that match the question
     activities, weather = load_activities()
 
@@ -91,6 +91,8 @@ def demoBot(input):
         matches = random.sample(activities, min(3, len(activities)))
 
     parts = ["<p><em>Demo mode: these suggestions come straight from today's activity data, without the AI.</em></p>"]
+    if charging:
+        parts.append(f"<p>{escape(charging)}</p>")
     if weather:
         parts.append(f"<p>The weather for the next hours: <strong>{escape(weather)}</strong>. Here is what you could do while your car charges:</p>")
     else:

@@ -1,0 +1,55 @@
+{# Live charging session panel, filled by scripts.js from /charging-status #}
+<aside class="charging-panel" id="chargingPanel" data-status="preparing" aria-label="Charging session">
+    <div class="panel-head">
+        <div>
+            <p class="eyebrow">Charging session</p>
+            <h2 class="station-name">NOI Techpark · <span data-field="charger">HPC-03</span></h2>
+            <p class="muted small"><span data-field="connector">CCS2</span> · up to <span data-field="max_power">150</span> kW · <span data-field="price">€0.59</span>/kWh</p>
+        </div>
+        <span class="status-pill"><span class="status-dot"></span><span data-field="status">Connecting</span></span>
+    </div>
+
+    <div class="soc-block">
+        <div class="soc-ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fill" cx="60" cy="60" r="52" id="socRing"></circle>
+                <line class="ring-target" id="socTarget" x1="60" y1="2" x2="60" y2="16"></line>
+            </svg>
+            <div class="soc-center">
+                <span class="soc-value"><span data-field="soc_number">--</span><small>%</small></span>
+                <span class="muted small">target <span data-field="target">80%</span></span>
+            </div>
+        </div>
+        <div class="soc-side">
+            <p class="eyebrow">Time to target</p>
+            <p class="big-number" data-field="remaining">--</p>
+            <p class="muted small" data-field="finish">Estimating…</p>
+            <p class="eyebrow mt">Charging power</p>
+            <p class="big-number accent"><span data-field="power">0.0</span><small> kW</small></p>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat"><span class="stat-label">Energy</span><span class="stat-value"><span data-field="energy">0.00</span><small> kWh</small></span></div>
+        <div class="stat"><span class="stat-label">Cost so far</span><span class="stat-value" data-field="cost">€0.00</span></div>
+        <div class="stat"><span class="stat-label">Range added</span><span class="stat-value"><span data-field="range">0</span><small> km</small></span></div>
+        <div class="stat"><span class="stat-label">Elapsed</span><span class="stat-value" data-field="elapsed">0:00</span></div>
+        <div class="stat"><span class="stat-label">Voltage</span><span class="stat-value"><span data-field="voltage">0</span><small> V</small></span></div>
+        <div class="stat"><span class="stat-label">Current</span><span class="stat-value"><span data-field="current">0</span><small> A</small></span></div>
+        <div class="stat"><span class="stat-label">Battery temp</span><span class="stat-value"><span data-field="temp">--</span><small> °C</small></span></div>
+        <div class="stat"><span class="stat-label">Started at</span><span class="stat-value"><span data-field="start_soc">--</span><small>%</small></span></div>
+    </div>
+
+    <figure class="power-chart">
+        <figcaption class="eyebrow">Power (kW) over time</figcaption>
+        <div class="chart-box" id="powerChart">
+            <p class="muted small chart-empty">The power curve appears once charging starts.</p>
+        </div>
+    </figure>
+
+    <div class="panel-actions">
+        <button type="button" class="pill-button danger" id="stopCharging">Stop charging</button>
+        <button type="button" class="pill-button primary" id="restartCharging" hidden>Start new session</button>
+    </div>
+</aside>

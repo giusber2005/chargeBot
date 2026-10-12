@@ -1,0 +1,26 @@
+{# Text input with the microphone, shared by the homepage and the chat page #}
+<form class="composer" id="composer" data-route="{{ route }}" autocomplete="off">
+    <input type="text" name="{{ field }}" class="composer-input" placeholder="{{ placeholder }}" aria-label="{{ placeholder }}" required>
+    <button type="button" class="icon-button" id="recordButton" title="Record a voice message" aria-label="Record a voice message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z"/></svg>
+    </button>
+    <button type="submit" class="icon-button primary" id="sendButton" title="Send" aria-label="Send">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg>
+    </button>
+</form>
+
+<div class="recorder" id="recorder" hidden>
+    <div class="recorder-live" id="recorderLive">
+        <span class="rec-dot"></span>
+        <span>Recording <span id="recordTimer">0:00</span></span>
+        <button type="button" class="pill-button danger" id="stopButton">Stop</button>
+    </div>
+    <div class="recorder-review" id="recorderReview" hidden>
+        <audio id="audioPlayer" controls></audio>
+        <div class="recorder-actions">
+            <button type="button" class="pill-button ghost" id="delButton">Discard</button>
+            <button type="button" class="pill-button ghost" id="againButton">Record again</button>
+            <button type="button" class="pill-button primary" id="sendAudioButton">Send audio</button>
+        </div>
+    </div>
+</div>

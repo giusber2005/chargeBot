@@ -4,6 +4,7 @@ import sqlite3
 from datetime import timedelta
 from functions import chargeBot, demoBot, openData, clear_old_chat_records, create_vector_store
 from apscheduler.schedulers.background import BackgroundScheduler
+from charging import charging_session
 
 
 import os
@@ -73,9 +74,10 @@ def create_app():
 
     def answer(question):
         global previous_response_id
+        charging = charging_session.bot_context()
         if is_demo():
-            return demoBot(question)
-        output, previous_response_id = chargeBot(question, client, vector_store, previous_response_id)
+            return demoBot(question, charging)
+        output, previous_response_id = chargeBot(question, client, vector_store, previous_response_id, charging)
         return output
 
     @app.context_processor
@@ -105,6 +107,20 @@ def create_app():
         except sqlite3.Error as e:
             return jsonify({"error": str(e)}), 500
         
+    @app.route("/charging-status", methods=["GET"])
+    def charging_status():
+        return jsonify(charging_session.snapshot())
+
+    @app.route("/charging/stop", methods=["POST"])
+    def charging_stop():
+        charging_session.stop()
+        return jsonify(charging_session.snapshot())
+
+    @app.route("/charging/restart", methods=["POST"])
+    def charging_restart():
+        charging_session.restart()
+        return jsonify(charging_session.snapshot())
+
     @app.route("/audio_folder/<filename>", methods=["GET"])
     def audio_folder(filename):
         
