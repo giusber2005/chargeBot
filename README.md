@@ -37,6 +37,11 @@ In a terminal, use Docker Compose to start or stop all the required components.
 
 Once the application is up and running, you can access the chat and start your query by opening your web browser and going to <http://localhost:5000>.
 
+### Demo mode
+
+The "Demo mode" slider in the top right corner makes ChargeBot answer straight from the Open Data Hub activity data, without calling the AI, so you can explore the basic features without spending API credits.
+If no `OPENAI_API_KEY` (or `CHATGPT_API_KEY`) is set, the website starts with demo mode always on.
+
 Some techical observations
 - You will be presented with a flask web interface showing the chat, the platform is already designed to work on mobile too.
 - The data is updated at the first prompt retrieving the daily atraction and the weather forecast for the next three hours.

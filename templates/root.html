@@ -23,5 +23,14 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
-<body>{% block body %}{% endblock %}</body>
+<body>
+    <div class="demo-toggle" {% if demo_forced %}title="No API key configured: the website can only run in demo mode"{% else %}title="Answer from the activity data without calling the AI"{% endif %}>
+        <label class="switch">
+            <input type="checkbox" id="demoToggle" {% if demo_forced %}checked disabled{% endif %}>
+            <span class="slider"></span>
+        </label>
+        <label for="demoToggle">Demo mode</label>
+    </div>
+    {% block body %}{% endblock %}
+</body>
 </html>

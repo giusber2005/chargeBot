@@ -2,7 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, sen
 from flask_session import Session
 import sqlite3
 from datetime import timedelta
-from functions import chargeBot, openData, clear_old_chat_records, reassign_assistant, reassign_vector_store
+from functions import chargeBot, demoBot, openData, clear_old_chat_records, create_vector_store
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
@@ -17,18 +17,16 @@ app = Flask(__name__)
 load_dotenv()
     
 # Getting chatGPT api_key for interacting with the api
-api_key = os.getenv('CHATGPT_API_KEY')
+api_key = os.getenv('OPENAI_API_KEY') or os.getenv('CHATGPT_API_KEY')
+# Without an API key the website still runs, but only in demo mode
+AI_ENABLED = bool(api_key)
+if not AI_ENABLED:
+    print("No OPENAI_API_KEY (or CHATGPT_API_KEY) set: running in demo mode only")
 # Initialize OpenAI client with API key
-client = OpenAI(api_key=api_key)
-#Initializing the thread
-thread = client.beta.threads.create()
-#Create new assistant
-assistant = reassign_assistant(client, None)
-# Create a vector store called "VS"
-vector_store = reassign_vector_store(client, None)
-if vector_store == None or assistant == None:
-        print("Couldn't start the web application for a problem in the initialization of the bot!")
-        sys.exit(1)
+client = OpenAI(api_key=api_key) if AI_ENABLED else None
+# Id of the last bot response, used to keep the conversation going (None = new conversation)
+previous_response_id = None
+vector_store = None
 
 def create_app():
 
@@ -58,7 +56,31 @@ def create_app():
 
     # Run openData() within the app context
     with app.app_context():
-        openData()
+        try:
+            openData()
+        except Exception as e:
+            # Keep serving with the activity.txt already on disk
+            print(f"Error refreshing data from Open Data Hub: {e}")
+
+    # Create a vector store called "VS" with the activity data
+    global vector_store
+    if AI_ENABLED:
+        vector_store = create_vector_store(client)
+
+    def is_demo():
+        # Demo mode is switched on by the "Demo mode" slider, or forced when there is no API key
+        return not AI_ENABLED or request.cookies.get('demo') == '1'
+
+    def answer(question):
+        global previous_response_id
+        if is_demo():
+            return demoBot(question)
+        output, previous_response_id = chargeBot(question, client, vector_store, previous_response_id)
+        return output
+
+    @app.context_processor
+    def inject_demo():
+        return {"demo_forced": not AI_ENABLED}
     
     # Define your routes
     
@@ -91,29 +113,9 @@ def create_app():
             
     @app.route("/")
     def index():
-        global thread
-        global client
-        global assistant
-        global vector_store
-        try:
-            client.beta.threads.delete(thread_id=thread.id)
-            print(f"Thread {thread.id} deleted successfully")
-        except Exception as e:
-            message = "Error deleting thread"
-            print(f"{message}: {e}")
-            return render_template("error.html", message=message)
-        
-        # Create new thread
-        thread = client.beta.threads.create()
-        # Assign new assistant
-        assistant = reassign_assistant(client, assistant)
-        # Assign new vector_store
-        vector_store = reassign_vector_store(client, vector_store)
-        
-        if assistant == None or vector_store == None:
-            message = "Error reassigning either the assistant or the thread"
-            print(message)
-            return render_template("error.html", message=message)
+        global previous_response_id
+        # Start a new conversation
+        previous_response_id = None
         
         # Delete all from the database
         conn = sqlite3.connect('database.db')
@@ -154,7 +156,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question, client, thread, assistant, vector_store)
+                output = answer(question)
                 question = filename
             else:
                 question = request.form.get("question")
@@ -162,7 +164,7 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question, client, thread, assistant, vector_store)
+                output = answer(question)
                 
             try:
                 conn = sqlite3.connect('database.db')
@@ -205,7 +207,7 @@ def create_app():
                 else:
                     return jsonify(message='Invalid file type'), 400
                 
-                output = chargeBot(question, client, thread, assistant, vector_store)
+                output = answer(question)
                 question = filename
             else:
                 question = request.form.get("messageInput")
@@ -213,7 +215,7 @@ def create_app():
                 if not question:
                     return jsonify({'error': 'Question is required.'}), 400
                 
-                output = chargeBot(question, client, thread, assistant, vector_store)
+                output = answer(question)
             
             try:
                 conn = sqlite3.connect('database.db')

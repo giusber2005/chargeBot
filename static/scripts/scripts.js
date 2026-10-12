@@ -1,6 +1,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    //demo mode slider: the choice is stored in a cookie the server reads on every chat request
+    const demoToggle = document.getElementById('demoToggle');
+    if (demoToggle && !demoToggle.disabled) {
+        demoToggle.checked = document.cookie.split('; ').includes('demo=1');
+        demoToggle.addEventListener('change', () => {
+            const maxAge = demoToggle.checked ? 60 * 60 * 24 * 30 : 0;
+            document.cookie = `demo=1; path=/; max-age=${maxAge}; SameSite=Lax`;
+        });
+    }
+
     //updating the chat with new messages
     const chatMessages = document.getElementById('chatMessages');
 

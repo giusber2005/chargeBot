@@ -8,6 +8,7 @@ services:
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - OPENAI_API_KEY=${CHATGPT_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o}
       - FLASK_ENV=${FLASK_ENV}
     volumes:
       # SQLite database
