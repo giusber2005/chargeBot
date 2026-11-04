@@ -1,71 +1,257 @@
+<a id="readme-top"></a>
 
-# ChargeBot
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-![Alt text](static/images/HappyFaceBlack.jpg)
 
-## Intro
 
-This is ChargeBot, an end-to-end Docker application that aims to provide a useful recreational opportunity for users waiting for their electric vehicle to be fully charged. It uses up-to-date data from the [Open Data Hub (ODH)](<https://opendatahub.it>) to optimise our OpenAi GPT-4o bot through Retrieval-Augmented Generation (RAG) in order to provide suggestions based on the user's preference, availability of events, activities, weather and distance between the user and the point of interest. The application uses the Flask framework to provide optimal interaction.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/giusber2005/chargeBot">
+    <img src="static/images/HappyFace-Transparent.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Installation
+<h3 align="center">ChargeBot</h3>
 
-Skip to the usage part if you only want to see the product online.
-If you really want to test our web service locally, maybe to experiment yourself with our codebase or just to make some styling adjustments
-ChargeBot installation involves building custom images for its Python processor components (that will be runned next inside a container).
+  <p align="center">
+    An AI assistant for EV charging stations that suggests what to do nearby while your car charges.
+    <br />
+    <a href="https://chargebot-2x2k.onrender.com">View Demo</a>
+    &middot;
+    <a href="https://github.com/giusber2005/chargeBot/issues/new?labels=bug">Report Bug</a>
+    &middot;
+    <a href="https://github.com/giusber2005/chargeBot/issues/new?labels=enhancement">Request Feature</a>
+  </p>
+</div>
 
-Clone this repository and copy `.env.example` into `.env`, possibly editing it (just creating `.env` is enough):
 
-  ```bash
-  git clone https://github.com/giusber2005/chargeBot.git
-  cd chargeBot
-  cp .env.example .env
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+ChargeBot is a web app meant to run on the screen of an electric vehicle charging station. While the car charges, the driver can chat with a bot that suggests events, activities and points of interest nearby that fit the time left, the weather and their preferences.
+
+* **Chat assistant**: an OpenAI GPT-4o bot answers using Retrieval-Augmented Generation over fresh data from the [Open Data Hub](https://opendatahub.it) (events of the day, seasonal activities, 3-hour weather forecast, distance from the charger to each point of interest). Voice messages are transcribed with Whisper.
+* **Charging dashboard**: next to the chat, a simulated DC fast-charging session (77 kWh battery on a 150 kW CCS2 charger) shows state of charge, time to the 80% target, power curve, energy delivered, cost, range added, voltage, current and battery temperature. The bot knows the remaining time, so its suggestions fit the wait.
+* **Demo mode**: a toggle that answers straight from the Open Data Hub data without calling the AI, so the app can be explored without API credits. Without an API key the app always runs in demo mode.
+* **Mobile ready**: the interface works on phones as well as on the station screen.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [![Python][Python]][Python-url]
+* [![Flask][Flask]][Flask-url]
+* [![OpenAI][OpenAI]][OpenAI-url]
+* [![SQLite][SQLite]][SQLite-url]
+* [![JavaScript][JavaScript]][JavaScript-url]
+* [![Docker][Docker]][Docker-url]
+
+Other libraries: Flask-Session, APScheduler, Gunicorn, Requests, python-dotenv.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+If you only want to try ChargeBot, open the [live demo](https://chargebot-2x2k.onrender.com). To run it locally, follow these steps.
+
+### Prerequisites
+
+* [Docker](https://docs.docker.com/get-docker/) with Docker Compose
+* An [OpenAI API key](https://platform.openai.com/api-keys) (optional, without it the app runs in demo mode)
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/giusber2005/chargeBot.git
+   cd chargeBot
+   ```
+2. Create a `.env` file in the project root
+   ```env
+   SECRET_KEY=any-long-random-string
+   CHATGPT_API_KEY=sk-...
+   # Optional
+   OPENAI_MODEL=gpt-4o
+   CHARGING_PRICE_PER_KWH=0.59
+   CHARGING_TIME_SCALE=1
+   ```
+   `CHARGING_TIME_SCALE` speeds up the simulated charging session (e.g. `20` makes it 20 times faster).
+3. Start the app
+   ```sh
+   docker compose up
+   ```
+4. Open <http://localhost:5000>
+
+To stop it, run `docker compose down -v --remove-orphans`.
+
+<details>
+  <summary>Without Docker</summary>
+
+  ```sh
+  python3 -m venv venv && source venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
   ```
+  When running without Docker, the API key can also be set as `OPENAI_API_KEY`.
+</details>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
 ## Usage
 
-You can see our demo for the application live on [this link](<https://chargebot-2x2k.onrender.com>) if you don't want to install it on your local machine.
+* Start a conversation and tell the bot what you like (food, culture, sport, a walk...). It replies with suggestions that fit the remaining charging time.
+* Keep chatting to refine the results: the conversation keeps its context.
+* Use the **Demo mode** switch in the top right corner to browse activities without calling the AI.
+* Stop and restart the charging session from the dashboard.
 
-If instead you've already installed it on your machine (thank you!), you can follow this step to try it:
-(Notice that this chatBot will be used inside charging station, what you see on your laptop is just a demo!)
+The data is refreshed at the first prompt of the day. Conversations are stored in a SQLite database and old records are cleared every hour.
 
-In a terminal, use Docker Compose to start or stop all the required components.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-  ```bash
-  docker compose up                        # to start the application
-  docker compose down -v --remove-orphans  # to stop the application
-  ```
 
-Once the application is up and running, you can access the chat and start your query by opening your web browser and going to <http://localhost:5000>.
 
-### Demo mode
+<!-- ARCHITECTURE -->
+## Architecture
 
-The "Demo mode" slider in the top right corner makes ChargeBot answer straight from the Open Data Hub activity data, without calling the AI, so you can explore the basic features without spending API credits.
-If no `OPENAI_API_KEY` (or `CHATGPT_API_KEY`) is set, the website starts with demo mode always on.
+![Architecture][architecture]
 
-### Charging dashboard
+The app loads the weather forecast, seasonal activities, daily events and the distance between the charging station and each point of interest from the Open Data Hub, stores them in a dataset and uses it for RAG with GPT-4o. The prompts keep the model on topic and limit hallucinations, while still answering off-topic questions politely and briefly.
 
-Next to the chat, ChargeBot shows the live charging session like the screen of a real charging station: state of charge with the 80% target, time to target and estimated finish time, charging power and its curve over time, energy delivered, cost, range added, voltage, current and battery temperature. The session can be stopped and restarted from the dashboard.
-The session is simulated in `charging.py` (a 77 kWh battery on a 150 kW CCS2 charger) and the bot receives the remaining charging time, so it can suggest activities that fit the wait.
-Two optional `.env` variables tune it: `CHARGING_PRICE_PER_KWH` (default `0.59`) and `CHARGING_TIME_SCALE` (default `1`, real time; e.g. `20` makes a demo session 20 times faster).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Some techical observations
-- You will be presented with a flask web interface showing the chat, the platform is already designed to work on mobile too.
-- The data is updated at the first prompt retrieving the daily atraction and the weather forecast for the next three hours.
-- Explore the different options by continuously chatting with the bot and specifying all your needs.
 
-![Alt text](static/images/Architecture.jpg)
-The figure shows the application architecture in terms of components and data flow (solid links):
 
-The application uses current data from the [Open Data Hub](<https://opendatahub.it>). Loads the :
-- Weather forecast for the next 3 hours
-- Activity based on the season
-- Events happening during the day
-- Distance between EV charging station and POI
+<!-- ROADMAP -->
+## Roadmap
 
-The information is collected and stored to create a dataset used to run RAG with the GPT-4o model.
-The props for the LLm are tailored so that the models are limited in the hallucination, and do not drive away from the conversation, but still mantain a polite approach to the conservation by giving short responses to off-topic questions.
-The conversation is stored in a SQlite database to further fine-tune the model with enough user preferences.
+- [x] RAG over Open Data Hub data
+- [x] Demo mode without API key
+- [x] Simulated charging dashboard
+- [ ] Connect the dashboard to a real charging station
+- [ ] Use stored conversations to personalise suggestions
 
-## Licence
+See the [open issues](https://github.com/giusber2005/chargeBot/issues) for a full list of proposed features (and known issues).
 
-MIT
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are welcome. If you have a suggestion, fork the repo and open a pull request, or open an issue with the tag "enhancement".
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Top contributors:
+
+<a href="https://github.com/giusber2005/chargeBot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=giusber2005/chargeBot" alt="contrib.rocks image" />
+</a>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Giuseppe Berardi - [@giusber2005](https://github.com/giusber2005)
+
+Project Link: [https://github.com/giusber2005/chargeBot](https://github.com/giusber2005/chargeBot)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* [Open Data Hub](https://opendatahub.it) for the tourism, events and weather data
+* [OpenAI](https://openai.com)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/giusber2005/chargeBot.svg?style=for-the-badge
+[contributors-url]: https://github.com/giusber2005/chargeBot/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/giusber2005/chargeBot.svg?style=for-the-badge
+[forks-url]: https://github.com/giusber2005/chargeBot/network/members
+[stars-shield]: https://img.shields.io/github/stars/giusber2005/chargeBot.svg?style=for-the-badge
+[stars-url]: https://github.com/giusber2005/chargeBot/stargazers
+[issues-shield]: https://img.shields.io/github/issues/giusber2005/chargeBot.svg?style=for-the-badge
+[issues-url]: https://github.com/giusber2005/chargeBot/issues
+[license-shield]: https://img.shields.io/github/license/giusber2005/chargeBot.svg?style=for-the-badge
+[license-url]: https://github.com/giusber2005/chargeBot/blob/main/LICENSE
+[architecture]: static/images/Architecture.jpg
+[Python]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[Python-url]: https://www.python.org/
+[Flask]: https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white
+[Flask-url]: https://flask.palletsprojects.com/
+[OpenAI]: https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white
+[OpenAI-url]: https://platform.openai.com/
+[SQLite]: https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white
+[SQLite-url]: https://www.sqlite.org/
+[JavaScript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
